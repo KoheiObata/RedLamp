@@ -289,22 +289,13 @@ if __name__ == '__main__':
 
     # Learning
     parser.add_argument('--lr', type=float, default=0.001, help='The learning rate (defaults to 0.001)')
-    parser.add_argument('--epoch', type=int, default=1, help='The number of epochs')
+    parser.add_argument('--epoch', type=int, default=100, help='The number of epochs')
 
     # Model
     parser.add_argument('--model', type=str, default='ConvAEC', help='The architecture name')
     parser.add_argument('--anomaly-types', type=str, default='normal,spike,flip,speedup,noise,cutoff,average,scale,wander,contextual,upsidedown,mixture', help='List of anomaly types')
 
     # Architecture
-    parser.add_argument('--residual-layers', type=int, default=10, help='(defaults to 10)')
-    parser.add_argument('--residual-channels', type=int, default=64, help='(defaults to 64)')
-    parser.add_argument('--dilation-cycle-length', type=int, default=10, help='(defaults to 10)')
-
-    # Computer
-    parser.add_argument('--gpu', type=int, default=0, help='The gpu no. used for training and inference')
-    parser.add_argument('--seed', type=int, default=0, help='The random seed')
-    parser.add_argument('--run_name', type=str, default='test', help='The folder name used to save model, output and evaluation metrics. This can be set to any word')
-
     parser.add_argument('--embedding_dim', type=int, default=128, help='The size of embedding')
     parser.add_argument('--c_loss_ratio', type=float, default=0.1, help='The weightage for cross-entropy loss (defaults to 0.1)')
     parser.add_argument('--min_features', type=int, default=1, help='The minimum number of augmented features')
@@ -313,6 +304,11 @@ if __name__ == '__main__':
 
     parser.add_argument('--apply_anomaly_mask', action="store_false", default=True, help='if True: reconstruct anomaly-free regions')
     parser.add_argument('--label_smoothing', action="store_false", default=True, help='if True: use soft labels')
+
+    # Computer
+    parser.add_argument('--gpu', type=int, default=0, help='The gpu no. used for training and inference')
+    parser.add_argument('--seed', type=int, default=0, help='The random seed')
+    parser.add_argument('--run_name', type=str, default='test', help='The folder name used to save model, output and evaluation metrics. This can be set to any word')
 
     args = parser.parse_args()
     print("Arguments:", str(args))
