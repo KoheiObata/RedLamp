@@ -249,6 +249,7 @@ def anomaly_scoreing(input, pred, pred_label, threshold=0.05):
 
     mean_label = np.mean(pred_label, axis=0)
     indices = np.where(mean_label > threshold)[0]
+    if 0 not in indices: indices = np.insert(indices, 0, 0)
     ce_score = label_score_selected_feature(pred_label, axis=indices)
     ce_score = convolve_minmax_score(ce_score, w=int(W/2))
 
